@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.syzible.appstore.Fragments.AppListing;
 import com.syzible.appstore.Fragments.Store;
 import com.syzible.appstore.Helpers.FragmentHelper;
+import com.syzible.appstore.Network.ReqJSON;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

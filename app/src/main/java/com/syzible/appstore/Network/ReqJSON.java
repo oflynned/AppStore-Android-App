@@ -13,28 +13,26 @@ import java.io.Writer;
  * Created by ed on 16/12/2016
  */
 
-public class ReqJSON extends GetRequest {
-    ReqJSON(Networking networking, String url) {
-        super(networking, url);
+public class ReqJSON extends GetRequest<JSONObject> {
+    public ReqJSON(NetworkCallback<JSONObject> networkCallback, String url) {
+        super(networkCallback, url);
     }
 
     @Override
-    public JSONObject download() {
+    public JSONObject transferData() {
         try {
-            int status = getConnection().getResponseCode();
             Writer writer = new StringWriter();
 
-            switch (status) {
+            switch (getConnection().getResponseCode()) {
                 case 200:
                 case 304:
                     char[] buffer = new char[1024];
                     BufferedReader br = new BufferedReader(
                             new InputStreamReader(getConnection().getInputStream()));
                     int n;
-                    while ((n = br.read(buffer)) != -1) {
-                        writer.write(buffer, 0, n);
-                    }
+                    while ((n = br.read(buffer)) != -1) writer.write(buffer, 0, n);
                     br.close();
+
                     return new JSONObject(writer.toString());
                 case 404:
                 case 500:
@@ -45,11 +43,6 @@ public class ReqJSON extends GetRequest {
             e.printStackTrace();
         }
 
-        return null;
-    }
-
-    @Override
-    public Object upload() {
         return null;
     }
 }

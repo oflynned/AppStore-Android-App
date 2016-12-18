@@ -12,13 +12,6 @@
         android:id="@+id/content_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Content Main" />
-
-    <Button
-        android:id="@+id/change_frag_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/content_main_title"
-        android:text="app listing" />
+        android:text="Content Title" />
 
 </RelativeLayout>

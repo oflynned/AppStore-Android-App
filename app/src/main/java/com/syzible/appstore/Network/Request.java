@@ -10,13 +10,13 @@ import java.net.URL;
  * Created by ed on 16/12/2016
  */
 
-abstract class Request <T> extends AsyncTask<Object, Integer, Object> {
-    private Networking networking;
+abstract class Request <T> extends AsyncTask<Object, Void, T> {
+    private NetworkCallback<T> networkCallback;
     private String url, verb;
     private HttpURLConnection connection;
 
-    Request(Networking networking, String url, String verb) {
-        this.networking = networking;
+    Request(NetworkCallback<T> networkCallback, String url, String verb) {
+        this.networkCallback = networkCallback;
         this.url = url;
         this.verb = verb;
     }
@@ -24,19 +24,18 @@ abstract class Request <T> extends AsyncTask<Object, Integer, Object> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        networking.onStart();
+        networkCallback.onStart();
     }
 
     @Override
-    protected void onProgressUpdate(Integer... progress) {
+    protected void onProgressUpdate(Void... progress) {
         super.onProgressUpdate(progress);
-        networking.onProgress(progress[0]);
     }
 
     @Override
-    protected Object doInBackground(Object... objects) {
+    protected T doInBackground(Object... objects) {
         try {
-            connection = (HttpURLConnection) new URL(getUrl()).openConnection();
+            connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setReadTimeout(10000);
             connection.setConnectTimeout(15000);
             connection.setRequestMethod(verb);
@@ -45,8 +44,7 @@ abstract class Request <T> extends AsyncTask<Object, Integer, Object> {
             connection.setAllowUserInteraction(false);
             connection.connect();
 
-            if(getVerb().equals("GET")) download();
-            else upload();
+            return transferData();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -54,29 +52,21 @@ abstract class Request <T> extends AsyncTask<Object, Integer, Object> {
                 connection.disconnect();
             }
         }
+
         return null;
     }
 
     @Override
-    protected void onPostExecute(Object o) {
+    protected void onPostExecute(T o) {
         super.onPostExecute(o);
-        assert networking != null;
-        if (o != null) networking.onSuccess(o);
-        else networking.onFailure();
-    }
-
-    public String getUrl() {
-        return url;
+        assert networkCallback != null;
+        if (o != null) networkCallback.onSuccess(o);
+        else networkCallback.onFailure();
     }
 
     HttpURLConnection getConnection() {
         return connection;
     }
 
-    public String getVerb() {
-        return verb;
-    }
-
-    public abstract T download();
-    public abstract T upload();
+    public abstract T transferData();
 }
