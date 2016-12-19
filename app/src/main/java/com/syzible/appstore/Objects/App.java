@@ -1,5 +1,7 @@
 package com.syzible.appstore.Objects;
 
+import android.graphics.Bitmap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,16 +10,28 @@ import org.json.JSONObject;
  */
 
 public class App {
-    private String id, publisherId, title, appPackage, description, resourceId;
-    private float rating;
-    private Category category;
+    private String id, publisherId, publisherName, title, appPackage, description, resourceId;
+    private String rating;
+    private String category;
+    private Bitmap icon;
 
     public App(JSONObject object) {
         try {
             this.title = object.getString("title");
+            this.publisherName = object.getString("publisher_name");
+            this.category = object.getString("category");
+            this.rating = object.getString("rating");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public Bitmap getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Bitmap icon) {
+        this.icon = icon;
     }
 
     public String getId() {
@@ -26,6 +40,10 @@ public class App {
 
     public String getPublisherId() {
         return publisherId;
+    }
+
+    public String getPublisherName() {
+        return publisherName;
     }
 
     public String getTitle() {
@@ -44,11 +62,11 @@ public class App {
         return resourceId;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 }

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.syzible.appstore.Objects.App;
 import com.syzible.appstore.R;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by ed on 18/12/2016
@@ -30,5 +33,17 @@ public class AppAdapter extends CardAdapter<App> {
         // details
         TextView title = (TextView) viewHolder.getView(R.id.app_title);
         title.setText(app.getTitle());
+
+        TextView publisherName = (TextView) viewHolder.getView(R.id.app_publisher);
+        publisherName.setText(app.getPublisherName());
+
+        TextView category = (TextView) viewHolder.getView(R.id.app_category);
+        category.setText(app.getCategory());
+
+        TextView rating = (TextView) viewHolder.getView(R.id.app_rating);
+        rating.setText(app.getRating() + "✮");
+
+        ImageView icon = (ImageView) viewHolder.getView(R.id.app_card_icon);
+        icon.setImageBitmap(app.getIcon());
     }
 }
