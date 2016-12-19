@@ -13,8 +13,8 @@ import java.io.Writer;
  * Created by ed on 16/12/2016
  */
 
-public class ReqJSON extends GetRequest<JSONObject> {
-    public ReqJSON(NetworkCallback<JSONObject> networkCallback, String url) {
+public class ReqJSONObject extends GetRequest<JSONObject> {
+    public ReqJSONObject(NetworkCallback<JSONObject> networkCallback, String url) {
         super(networkCallback, url);
     }
 

@@ -10,5 +10,5 @@ public abstract class Constants {
     private static final String ENDPOINT = LOCAL_URL + "/appstore";
 
     //subdirectories
-    public static final String JSON_ENDPOINT = ENDPOINT + "/get";
+    public static final String APP_LISTINGS = ENDPOINT + "/get-listings";
 }

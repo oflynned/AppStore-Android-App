@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize">
 
-    <TextView
-        android:id="@+id/app_listing_title"
-        android:layout_width="wrap_content"
+    <include
+        layout="@layout/app_listing_compound"
         android:layout_height="wrap_content"
-        android:text="App Listing" />
+        android:layout_width="match_parent"/>
 
 </LinearLayout>
