@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.syzible.appstore.Objects.App;
 import com.syzible.appstore.R;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by ed on 18/12/2016
  */

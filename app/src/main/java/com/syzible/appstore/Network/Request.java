@@ -24,7 +24,6 @@ abstract class Request <T> extends AsyncTask<Object, Void, T> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        networkCallback.onStart();
     }
 
     @Override

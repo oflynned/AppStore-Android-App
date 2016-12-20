@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content_main"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_listings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
     android:layout_marginTop="?attr/actionBarSize">
 
-    <Button
-        android:text="Refresh"
-        android:id="@+id/force_refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_below="@+id/force_refresh"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/force_refresh"
+        android:layout_margin="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.syzible.appstore.MainActivity" />
 
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

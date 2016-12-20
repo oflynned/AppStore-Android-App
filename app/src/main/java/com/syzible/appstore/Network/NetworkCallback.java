@@ -5,8 +5,6 @@ package com.syzible.appstore.Network;
  */
 
 public interface NetworkCallback<T> {
-    void onStart();
-    void onProgress(int progress);
     void onSuccess(T object);
     void onFailure();
 }

@@ -14,6 +14,7 @@ public class App {
     private String rating;
     private String category;
     private Bitmap icon;
+    private String iconUrl, apkUrl;
 
     public App(JSONObject object) {
         try {
@@ -21,6 +22,9 @@ public class App {
             this.publisherName = object.getString("publisher_name");
             this.category = object.getString("category");
             this.rating = object.getString("rating");
+            this.iconUrl = object.getString("icon_url");
+            this.apkUrl = object.getString("apk_url");
+            this.appPackage = object.getString("app_package");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -68,5 +72,13 @@ public class App {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getIconResource() {
+        return iconUrl;
+    }
+
+    public String getApkUrl() {
+        return apkUrl;
     }
 }

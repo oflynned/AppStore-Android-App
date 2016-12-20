@@ -11,5 +11,4 @@ public abstract class Constants {
 
     //subdirectories
     public static final String APP_LISTINGS = ENDPOINT + "/get-listings";
-    public static final String SAMPLE_ICON = LOCAL_URL + "/images/tearma_logo.png";
 }
